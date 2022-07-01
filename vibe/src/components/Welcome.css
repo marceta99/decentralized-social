@@ -1,0 +1,42 @@
+.container{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: fixed;
+    display: flex;
+}
+
+  .left {
+    width: 50%;
+    height: 100%;
+  }
+  
+  .right {
+    width: 50%;
+    height: 100%;
+    background-image: linear-gradient(to right top, #ffffff, #f2f1f2, #e4e4e4, #d8d6d7, #cbc9c9, #c6c3c2, #c1bdbb, #bcb7b4, #bab8b2, #b6b9b2, #b0bbb5, #abbcbb);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.walletConnection{
+    width: 30%;
+    height: 10%;
+    background-image: linear-gradient(to right top, #c6c6f4, #d1c0e4, #d4bcd4, #d2b9c7, #cab8bd, #c8b9be, #c5b9bf, #c3babf, #c4bdc9, #bec3d3, #b5c9da, #abd0da);
+    border-radius: 20px;
+    border: none;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.walletConnection img{
+    height: 60px;
+    width: 60px;
+}
+.walletConnection:hover{
+    width: 32%;
+    height: 11%;
+    background-image: linear-gradient(to right top, #c6c6f4, #c0baf2, #bbadee, #b99fea, #b891e4, #a897eb, #969cf1, #82a1f4, #65b6f3, #69c5e9, #87d1dc, #abdad4);
+}
