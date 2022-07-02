@@ -1,40 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import "./SideBar.css" ;
-import {Icon} from "web3uikit" ; 
 import { Link } from "react-router-dom";
+import img1 from "../images/logo.png" ; 
+import Modal from "./Modal";
 
-const Sidebar = () => {
-  
+const Sidebar = ({contract}) => {
+  const [openModal, setOpenModal] = useState(false) ; 
 
   return (
     <>
+     {openModal && <Modal onClose={()=>setOpenModal(false)} contract={contract}/>} 
       <div className="siderContent">
-        <div className="menu">
-          <div className="details">
-            <Icon fill="#ffffff" size={33} svg="twitter"/>
-          </div>
-        </div>
         <Link to="/" className="link">
-        <div className="menuItems">
-          <div className="details">
-            <Icon fill="#ffffff" size={33} svg="list"/>Home
-          </div>
-        </div>
+          <h1 className="logo">VIBE</h1>
         </Link>
-        <Link to="/profile" className="link">
-        <div className="menuItems">
-          <div className="details">
-            <Icon fill="#ffffff" size={33} svg="user"/>Profile
-          </div>
+        <div className="buttonPost" onClick={()=> setOpenModal(true)}>
+           <h4 className="writePost">Write A Post </h4>
         </div>
-        </Link>
-        <Link to="/settings" className="link">
-        <div className="menuItems">
-          <div className="details">
-            <Icon fill="#ffffff" size={33} svg="cog"/>Settings
-          </div>
-        </div>
-        </Link>
       </div>
     </>
   );

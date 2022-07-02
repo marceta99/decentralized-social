@@ -7,13 +7,17 @@ import SearchUserPosts from "./SearchUserPosts";
 
 const Feed = ({contract})=>{
   const [posts, setPosts] = useState() ; 
+  const [reversedPosts, setReversedPosts] = useState(); 
   const input = useRef();
 
     useEffect(()=>{
+      let fetchedPosts = [] ; 
       const getPostAsync = async() =>{
         const postId = await contract?.getLatestPostID();
-        const fetchedPosts = await contract?.fetchPostsRanged(1,postId );
-        setPosts(fetchedPosts) ;  
+        fetchedPosts = await contract?.fetchPostsRanged(1,postId );
+        const array = [...fetchedPosts] ;
+        array.reverse() ;
+        setPosts(array);  
       }
       getPostAsync() ; 
     }, [contract]) ;

@@ -1,56 +1,33 @@
 import React from "react";
 import "./RightBar.css" ; 
-import spaceshooter from "../images/spaceshooter.jpeg";
-import netflix from "../images/netflix.jpeg";
-import academy from "../images/academy.png";
-import youtube from "../images/youtube.png";
-import js from "../images/js.png";
-
+import { useWeb3React } from "@web3-react/core";
+import { useEffect, useState } from "react";
 
 const Rightbar = () => {
-  const trends = [
-    {
-      img: spaceshooter,
-      text: "Learn how to build a Web3 FPS game using unity...",
-      link: "https://moralis.io/moralis-projects-learn-to-build-a-web3-space-fps-game/",
-    },
-    {
-      img: netflix,
-      text: "The fisrt Moralis Project! Let's Netflix and chill...",
-      link: "https://moralis.io/moralis-projects-learn-to-build-a-web3-netflix-clone/",
-    },
-    {
-      img: academy,
-      text: "Master DeFi in 2022. Start  at the Moralis Academy...",
-      link: "https://academy.moralis.io/courses/defi-101",
-    },
-    {
-      img: js,
-      text: "Become a Web3 Developer with just simple JS...",
-      link: "https://academy.moralis.io/all-courses",
-    },
-    {
-      img: youtube,
-      text: "Best youtube channel to learn about Web3...",
-      link: "https://www.youtube.com/channel/UCgWS9Q3P5AxCWyQLT2kQhBw",
-    },
-  ];
+  const {activate , active , connector , deactivate ,library : provider} =
+         useWeb3React() ; //ima property library, a mi ga rename u provider 
+  const [user, setUser] = useState() ;
+
+  useEffect(()=>{
+    if(active){
+      const signer = provider.getSigner() ;
+      const signerAddress = signer.provider.provider["selectedAddress"].toLowerCase() ;
+      setUser(signerAddress); 
+    }
+  })
 
   return (
     <>
-     <div className="rightbarContent">
-     
-      <div className="trends">
-        {trends.map((trend)=>{
-          return (
-            <div className="trend" onClick={()=> window.open(trend.link)}>
-              <img src={trend.img} className="trendImg"></img>
-              <div className="trendText">{trend.text}</div>
-            </div>
-          )
-        })}
+    {active && 
+      <div className="rightbarContent">
+      <div className="user">
+        <div className="userContainer">
+          {user?.slice(0,15)}...
+        </div>
+        
       </div>
-     </div>
+     </div> }
+     
     </>
   );
 };
