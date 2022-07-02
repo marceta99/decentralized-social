@@ -9,8 +9,6 @@ import { useWeb3React } from "@web3-react/core";
 import { InjectedConnector } from '@web3-react/injected-connector'
 import {WalletConnectConnector} from "@web3-react/walletconnect-connector" ; 
 import Home from "./Home";
-import { Route } from 'react-router-dom';
-
 const injected = new InjectedConnector(); 
 
 const RPC_URLS = {
@@ -28,7 +26,7 @@ const walletconnect = new WalletConnectConnector({
 
 const Welcome = ()=>{
     const {activate , active , connector , deactivate ,library : provider} =
-         useWeb3React() ; //ima property library, a mi ga rename u provider  
+         useWeb3React() ; //ima property library, a mi ga rename u provider 
 
     function resetWalletConnector(connector){
         if(connector && connector instanceof WalletConnectConnector){
@@ -114,9 +112,6 @@ const Welcome = ()=>{
                         Read our FAQ
                     </Link>
                     <br/>
-                    <Link to="/home" target="_blank">
-                        Check new vibes
-                    </Link>
                     </p>
                     <button className="walletConnection" onClick={()=>connect()}>
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/MetaMask_Fox.svg/800px-MetaMask_Fox.svg.png"></img>
@@ -126,6 +121,12 @@ const Welcome = ()=>{
                         <img src="https://api.nuget.org/v3-flatcontainer/walletconnect.core/1.7.1/icon"></img>
                         WalletConnect
                         </button>
+                    <br/>
+                    <Link to="/home">
+                        <button className="walletConnection">
+                            <img src={img1}></img>
+                        </button>
+                    </Link>
                     {active ? <h1>Connected</h1>: <h1>Not Connected</h1>}
                 </div>
             </div>

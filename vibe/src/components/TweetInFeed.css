@@ -60,7 +60,9 @@
     flex-direction: column;
     gap:10px;
 }
-
+.moreVert{
+    margin-left: 20%;
+}
 .tweetImg {
     width: 98%;
     border-radius: 10px;

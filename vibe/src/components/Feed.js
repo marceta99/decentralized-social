@@ -20,8 +20,8 @@ const Feed = ({contract})=>{
       <div className="pageIdentify">Home</div>
        <div className="mainContent">
         <WritePost contract={contract}/>
-        {posts && posts.map((post)=>(
-          <TweetInFeed key={post} post={post}/>
+        {posts && posts.map((post,i)=>(
+          <TweetInFeed key={post} post={post} index={i+1} contract={contract}/>
         ))}
         
        </div>

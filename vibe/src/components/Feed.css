@@ -52,18 +52,44 @@
     width: 98%;
     border-radius: 10px;
 }
-
-.tweetBox {
-    width:89%;
-}
 .profileTweet {
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid rgb(63, 63, 63) ;
     padding: 20px;
+    flex-direction: column;
 }
 .profilePic {
     border-radius: 50%;
     width: 50px;
     height: 50px;
 }
+.postInput{
+    width: 90%;
+    height: 100%;
+    border-radius: 20px;
+    background-color: inherit ; 
+    border: none ; 
+}
+.inputContainer {
+    /* This bit sets up the horizontal layout */
+    display:flex;
+    flex-direction:row;
+    width: 90%;
+    border:2px solid white;
+    border-radius: 20px;
+    padding:20px;
+  }
+  .buttonPost{
+    background-color: blue;
+    border-radius: 20px;
+    border: none;
+    width: 30%;
+  }
+  .buttonPost:hover{
+    background-color: indigo;
+  }
+  input:focus {
+    outline: none;
+  }
+  

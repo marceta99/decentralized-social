@@ -1,12 +1,44 @@
 import React from "react";
 import { Icon } from "web3uikit";
 import "./TweetInFeed.css" ; 
+import { useWeb3React } from "@web3-react/core";
+import {ethers} from "ethers" ; 
 
+const TweetInFeed = ({post, contract, index}) => {
+  const {activate , active , connector , deactivate ,library : provider} =
+  useWeb3React(); //ima property library, a mi ga rename u provider 
 
-
-const TweetInFeed = ({post}) => {
   console.log("post from tweetfeed") ; 
   console.log(post); 
+
+  const sponsorPost = async ()=>{
+    if(active){
+      const signer = provider.getSigner() ;
+      const signerAddress = signer.provider.provider["selectedAddress"].toLowerCase() ; //proxy objekat
+      //Object.keys(signer.provider.provider) ;
+      const postCreator = post[1].toLowerCase() ; 
+      let isValid = false ; 
+      for(let i = 0 ; i< postCreator.length ;i++){
+        let char1 = postCreator.charCodeAt(i);   
+        let char2 = signerAddress.charCodeAt(i); 
+        if(char1 != char2){
+            isValid = true ; 
+            break; 
+        }
+      }
+      if(!isValid){
+        console.log("can't sposnor your own posts") ;
+      }else{
+        try {
+          const options = {value: ethers.utils.parseEther("0.01")}
+          await contract.sponsorPost(index, options);  
+        } catch (error) {
+          console.log("greska")
+          console.log(error)
+        }
+      }
+    }
+  }
   return (
     <>
      <div className="feedTweet">
@@ -14,24 +46,26 @@ const TweetInFeed = ({post}) => {
         <div className="completeTweet">
           <div className="who">
             {post[1]}
-            <div className="accWhen">0x123lsk23js2asdasdasdasd 1h</div>
+            <div className="accWhen">1h ago</div>
+            <div className="interactionNums moreVert">
+                <Icon fill="#000000" size={20} svg="moreVert"/>
+              </div>
           </div>
           <div className="tweetContent">
             {post[2]}
             <img className="tweetImg" src="https://vrelegume.rs/wp-content/uploads/2021/05/tesla-roadster.jpg" ></img>
           </div>
 
-          <div className="interactions">
-            <div className="interactionNums">
-              <Icon fill="#3f3f3f" size={20} svg="messageCircle"/>
+          {active && 
+            <div className="interactions">
+              <div className="interactionNums" onClick={sponsorPost}>
+                <Icon fill="#000000" size={20} svg="eth"/>12
+              </div>
+              <div className="interactionNums">
+                <Icon fill="#3f3f3f" size={20} svg="matic"/>
+              </div>
             </div>
-            <div className="interactionNums">
-              <Icon fill="#3f3f3f" size={20} svg="star"/>12
-            </div>
-            <div className="interactionNums">
-              <Icon fill="#3f3f3f" size={20} svg="matic"/>
-            </div>
-          </div>
+          }
 
         </div>
      </div>
