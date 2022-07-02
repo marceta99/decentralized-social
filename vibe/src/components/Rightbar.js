@@ -5,7 +5,6 @@ import netflix from "../images/netflix.jpeg";
 import academy from "../images/academy.png";
 import youtube from "../images/youtube.png";
 import js from "../images/js.png";
-import { Input } from "web3uikit";
 
 
 const Rightbar = () => {
@@ -40,7 +39,6 @@ const Rightbar = () => {
   return (
     <>
      <div className="rightbarContent">
-      <Input label="searchTwitter" name="searchTwitter" prefixIcon="search" labelBgColor="#141d26"></Input>
      
       <div className="trends">
         {trends.map((trend)=>{

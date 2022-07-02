@@ -14,7 +14,6 @@ function App() {
   return (
     <div>
     <BrowserRouter>
-    <div>HiiIIIIIIII</div>
     <Web3ReactProvider  getLibrary={getLibrary}>
     
       <div className='main-container'>
