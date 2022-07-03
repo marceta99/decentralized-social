@@ -6,7 +6,7 @@ import { useWeb3React } from "@web3-react/core";
 import { useEffect, useState } from "react";
 import {ethers} from "ethers" ; 
 
-const Home = ()=>{
+const Home = ({isMetaMask, isWalletConnect})=>{
     const [contract, setContract] = useState(); 
 
     const {activate , active , connector , deactivate ,library : provider} =
@@ -19,6 +19,7 @@ const Home = ()=>{
             const getSmartContractInstane = ()=>{
                 if(active){
                     const signer = provider.getSigner() ; 
+                    console.log(signer);
                     vibeContract = new ethers.Contract(adresa, mvpWorkshopAbi, signer) ;
                     setContract(vibeContract); 
                 }else{
@@ -37,7 +38,8 @@ const Home = ()=>{
 
                 <div className='mainWindow'><Feed contract={contract}/></div>
 
-                <div className='rightBar'><Rightbar contract={contract}/></div>
+                <div className='rightBar'><Rightbar contract={contract} 
+                    isMetaMask={isMetaMask} isWalletConnect={isWalletConnect}/></div>
             </div>
         </>
     ); 

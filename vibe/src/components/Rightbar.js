@@ -3,7 +3,7 @@ import "./RightBar.css" ;
 import { useWeb3React } from "@web3-react/core";
 import { useEffect, useState } from "react";
 
-const Rightbar = () => {
+const Rightbar = ({isMetaMask, isWalletConnect}) => {
   const {activate , active , connector , deactivate ,library : provider} =
          useWeb3React() ; //ima property library, a mi ga rename u provider 
   const [user, setUser] = useState() ;
@@ -11,8 +11,14 @@ const Rightbar = () => {
   useEffect(()=>{
     if(active){
       const signer = provider.getSigner() ;
-      const signerAddress = signer.provider.provider["selectedAddress"].toLowerCase() ;
-      setUser(signerAddress); 
+      if(isWalletConnect){
+        const walletConnectAddress = signer.provider.provider.signer.connection.wc._accounts[0] ;
+        setUser(walletConnectAddress);
+      }else if(isMetaMask){
+        const signerAddress = signer.provider.provider["selectedAddress"].toLowerCase() ;
+        setUser(signerAddress);
+      }
+      
     }
   })
 

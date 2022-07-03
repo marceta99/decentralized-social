@@ -16,15 +16,13 @@ const RPC_URLS = {
 }
 const walletconnect = new WalletConnectConnector({
     rpc : {
-        4 : RPC_URLS[4]
+        1: "https://rinkeby.infura.io/v3/8f3b5182a71d43e1bb85fb0b6095ef2a"
     }, 
     qrcode : true ,
     pollingInterval : 15000
 }); 
 
-
-
-const Welcome = ()=>{
+const Welcome = ({setIsWalletConnect, setIsMetaMask, isMetaMask, isWalletConnect})=>{
     const {activate , active , connector , deactivate ,library : provider} =
          useWeb3React() ; //ima property library, a mi ga rename u provider 
 
@@ -42,11 +40,20 @@ const Welcome = ()=>{
         }
     }
 
-    async function connect(){
+    async function connectMetaMask(){
+        try{  
+            await activate(injected); 
+            setIsMetaMask(true); 
+            console.log(active); 
+        }catch(e){
+            console.log(e) ; 
+        }
+    }
+    async function connectWalletConnect(){
         try{  
             //resetWalletConnector(walletconnect); 
-            //await activate(walletconnect) ; 
-            await activate(injected); 
+            await activate(walletconnect) ; 
+            setIsWalletConnect(true) ; 
             console.log(active); 
         }catch(e){
             console.log(e) ; 
@@ -113,11 +120,13 @@ const Welcome = ()=>{
                     </Link>
                     <br/>
                     </p>
-                    <button className="walletConnection" onClick={()=>connect()}>
+                    <button disabled={isWalletConnect} className="walletConnection" 
+                            onClick={()=>connectMetaMask()}>
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/MetaMask_Fox.svg/800px-MetaMask_Fox.svg.png"></img>
                         MetaMask
                         </button>
-                    <button className="walletConnection" onClick={()=>execute()}>
+                    <button disabled={isMetaMask} className="walletConnection" 
+                            onClick={()=>connectWalletConnect()}>
                         <img src="https://api.nuget.org/v3-flatcontainer/walletconnect.core/1.7.1/icon"></img>
                         WalletConnect
                         </button>
