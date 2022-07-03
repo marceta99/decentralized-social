@@ -10,6 +10,7 @@ const Feed = ({contract})=>{
   const [lastShowedPostId, setLastShowedId] = useState(1) ; 
   const [isLoad, setIsLoad] = useState(false); 
   const [isSearch, setIsSearch] = useState(false) ; 
+  const [sponsoredPosts, setSponsoredPosts] = useState([]);
   const input = useRef();
   let fetchedPosts = [] ;
   let latestPostId = 1 ;
@@ -91,7 +92,8 @@ const Feed = ({contract})=>{
        <div className="mainContent">
         <WritePost contract={contract} setIsLoad={setIsLoad}/>
         {posts && posts.map((post,i)=>(
-          <TweetInFeed key={post} post={post} index={i+1} contract={contract}/>
+          <TweetInFeed key={post} post={post} index={i+1} contract={contract} 
+            sponsoredPosts={sponsoredPosts} setSponsoredPosts={setSponsoredPosts}/>
         ))}
         
        </div>

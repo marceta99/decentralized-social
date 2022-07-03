@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Icon } from "web3uikit";
 import "./TweetInFeed.css" ; 
 import { useWeb3React } from "@web3-react/core";
 import {ethers} from "ethers" ; 
 
-const TweetInFeed = ({post, contract, index}) => {
+const TweetInFeed = ({post, contract, index, sponsoredPosts ,setSponsoredPosts}) => {
   const {activate , active , connector , deactivate ,library : provider} =
   useWeb3React(); //ima property library, a mi ga rename u provider 
+
+  const [isAlredySposnored, setAlredySponsored] = useState(false);
 
   console.log("post from tweetfeed") ; 
   console.log(post); 
@@ -27,14 +29,22 @@ const TweetInFeed = ({post, contract, index}) => {
         }
       }
       if(!isValid){
-        console.log("can't sposnor your own posts") ;
+        alert("can't sposnor your own posts") ; 
       }else{
-        try {
-          const options = {value: ethers.utils.parseEther("0.01")}
-          await contract.sponsorPost(index, options);  
-        } catch (error) {
-          console.log("greska")
-          console.log(error)
+        sponsoredPosts.forEach(p => {
+            if(p === index){
+              setAlredySponsored(true) ; 
+              alert("You alredy sposnored this post");
+            }     
+        });
+        if(!isAlredySposnored){
+          try {
+            const options = {value: ethers.utils.parseEther("0.01")}
+            await contract.sponsorPost(index, options);  
+            setSponsoredPosts(previous => [...previous, index]); 
+          } catch (error) {
+            alert("insufficient funds"); 
+          }
         }
       }
     }
