@@ -8,12 +8,15 @@ import SearchUserPosts from "./SearchUserPosts";
 const Feed = ({contract})=>{
   const [posts, setPosts] = useState() ; 
   const [lastShowedPostId, setLastShowedId] = useState(1) ; 
+  const [isLoad, setIsLoad] = useState(false); 
+  const [isSearch, setIsSearch] = useState(false) ; 
   const input = useRef();
   let fetchedPosts = [] ;
   let latestPostId = 1 ;
-    useEffect(()=>{
-       
-      const getPostAsync = async() =>{
+  let getPostAsync ;  
+  useEffect(()=>{
+       console.log("RELOADDDDDDDDDDDDDDDDDDDDDDD");
+        getPostAsync = async() =>{
         latestPostId = await contract?.getLatestPostID();
         if(latestPostId < 5) fetchedPosts = await contract?.fetchPostsRanged(1,latestPostId );
         else{
@@ -27,10 +30,10 @@ const Feed = ({contract})=>{
         } 
       }
       getPostAsync() ; 
-    }, [contract]) ;
+    }, [contract, isLoad]) ;
     
     window.onscroll = async ()=>{
-      if(window.innerHeight + document.documentElement.scrollTop
+      if(!isSearch && window.innerHeight + document.documentElement.scrollTop
         === document.documentElement.offsetHeight){ //if is scrolled at the end of a page
           console.log("SCROLL")
           if(lastShowedPostId === 1)return ; 
@@ -48,9 +51,10 @@ const Feed = ({contract})=>{
         }
     }
 
-    const searchPosts =()=>{
+    const searchPosts = async ()=>{
+      setIsSearch(true) ; 
       const text = input.current.value ;
-      const postsFromCreator = retrivePostsFromCreator(text) ; 
+      const postsFromCreator = await retrivePostsFromCreator(text) ; 
       if(postsFromCreator.length !== 0)setPosts(postsFromCreator) ; 
   }
   const compareAddress = (address1, address2)=>{
@@ -65,9 +69,11 @@ const Feed = ({contract})=>{
     }
     return true ; 
   }
-  const retrivePostsFromCreator = (creatorAddress)=>{
+  const retrivePostsFromCreator = async (creatorAddress)=>{
     const postsFromCreator = [] ; 
-    posts.forEach(p =>{
+    const lastPostId = await contract?.getLatestPostID();
+    const allPosts = await contract?.fetchPostsRanged(1,lastPostId );
+    allPosts.forEach(p =>{
       if(compareAddress(creatorAddress, p[1] ))postsFromCreator.push(p) ; 
     })
     return postsFromCreator ; 
@@ -83,7 +89,7 @@ const Feed = ({contract})=>{
           </div>
         </div>
        <div className="mainContent">
-        <WritePost contract={contract}/>
+        <WritePost contract={contract} setIsLoad={setIsLoad}/>
         {posts && posts.map((post,i)=>(
           <TweetInFeed key={post} post={post} index={i+1} contract={contract}/>
         ))}

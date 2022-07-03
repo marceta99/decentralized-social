@@ -3,7 +3,7 @@ import { Icon, TextArea } from "web3uikit";
 import { useWeb3React } from "@web3-react/core";
 import { useEffect, useRef } from "react";
 
-const WritePost = ({contract})=>{
+const WritePost = ({contract, setIsLoad })=>{
   const {activate , active , connector , deactivate ,library : provider} =
          useWeb3React(); //ima property library, a mi ga rename u provider  
   const input = useRef(); 
@@ -18,6 +18,9 @@ const WritePost = ({contract})=>{
       if(text){
         try{
             await contract.createPost(text); 
+            setTimeout(()=>{
+              setIsLoad(previous => !previous) ; 
+            }, 20000);
         }catch(e){
             console.log(e) ; 
         }
