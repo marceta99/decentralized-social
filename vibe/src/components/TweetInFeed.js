@@ -1,15 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Icon } from "web3uikit";
 import "./TweetInFeed.css" ; 
 import { useWeb3React } from "@web3-react/core";
 import {ethers} from "ethers" ; 
+
+const mainNetProvider = new ethers.providers.JsonRpcProvider("https://mainnet.infura.io/v3/8f3b5182a71d43e1bb85fb0b6095ef2a"); 
 
 const TweetInFeed = ({post, contract, index, sponsoredPosts ,setSponsoredPosts}) => {
   const {activate , active , connector , deactivate ,library : provider} =
   useWeb3React(); //ima property library, a mi ga rename u provider 
 
   const [isAlredySposnored, setAlredySponsored] = useState(false);
+  const [ens,setEns] = useState() ;
 
+  useEffect(()=>{
+    const getEns = async ()=>{
+      const resolvedName = await mainNetProvider?.lookupAddress(post[1]) ; 
+      console.log(resolvedName); 
+      setEns(resolvedName); 
+    }
+    getEns() ;
+  },[]) ;
   console.log("post from tweetfeed") ; 
   console.log(post); 
 
@@ -55,7 +66,7 @@ const TweetInFeed = ({post, contract, index, sponsoredPosts ,setSponsoredPosts})
         <img className="profilePic" src="https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTc5OTk2ODUyMTMxNzM0ODcy/gettyimages-1229892983-square.jpg"></img>
         <div className="completeTweet">
           <div className="who">
-            {post[1]}
+            {ens ? ens : post[1]}
             <div className="accWhen">1h ago</div>
             <div className="interactionNums moreVert">
                 <Icon fill="#000000" size={20} svg="moreVert"/>

@@ -15,6 +15,7 @@ const Feed = ({contract})=>{
   let fetchedPosts = [] ;
   let latestPostId = 1 ;
   let getPostAsync ;  
+  
   useEffect(()=>{
        console.log("RELOADDDDDDDDDDDDDDDDDDDDDDD");
         getPostAsync = async() =>{
