@@ -53,7 +53,7 @@ const TweetInFeed = ({post, contract, index}) => {
           </div>
           <div className="tweetContent">
             {post[2]}
-            <img className="tweetImg" src="https://vrelegume.rs/wp-content/uploads/2021/05/tesla-roadster.jpg" ></img>
+           
           </div>
 
           {active && 

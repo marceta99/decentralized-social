@@ -7,21 +7,47 @@ import SearchUserPosts from "./SearchUserPosts";
 
 const Feed = ({contract})=>{
   const [posts, setPosts] = useState() ; 
-  const [reversedPosts, setReversedPosts] = useState(); 
+  const [lastShowedPostId, setLastShowedId] = useState(1) ; 
   const input = useRef();
-
+  let fetchedPosts = [] ;
+  let latestPostId = 1 ;
     useEffect(()=>{
-      let fetchedPosts = [] ; 
+       
       const getPostAsync = async() =>{
-        const postId = await contract?.getLatestPostID();
-        fetchedPosts = await contract?.fetchPostsRanged(1,postId );
-        const array = [...fetchedPosts] ;
-        array.reverse() ;
-        setPosts(array);  
+        latestPostId = await contract?.getLatestPostID();
+        if(latestPostId < 5) fetchedPosts = await contract?.fetchPostsRanged(1,latestPostId );
+        else{
+          setLastShowedId(latestPostId - 4); 
+          fetchedPosts = await contract?.fetchPostsRanged(latestPostId - 4, latestPostId);
+        }
+        if(fetchedPosts){
+          const array = [...fetchedPosts] ;
+          array.reverse() ;
+          setPosts(array);
+        } 
       }
       getPostAsync() ; 
     }, [contract]) ;
     
+    window.onscroll = async ()=>{
+      if(window.innerHeight + document.documentElement.scrollTop
+        === document.documentElement.offsetHeight){ //if is scrolled at the end of a page
+          console.log("SCROLL")
+          if(lastShowedPostId === 1)return ; 
+          let arr1 =[] ; 
+          if(lastShowedPostId < 5){
+             arr1 = await contract?.fetchPostsRanged(1,lastShowedPostId );
+          }else{
+             arr1 = await contract?.fetchPostsRanged(lastShowedPostId - 4, 4 );
+            setLastShowedId(lastShowedPostId - 4); 
+          }
+          let array = [...arr1] ;
+          array.reverse() ;
+          const arr2 = [...posts, ...array]; 
+          setPosts(arr2); 
+        }
+    }
+
     const searchPosts =()=>{
       const text = input.current.value ;
       const postsFromCreator = retrivePostsFromCreator(text) ; 
