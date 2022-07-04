@@ -7,8 +7,7 @@ import {ethers} from "ethers" ;
 const mainNetProvider = new ethers.providers.JsonRpcProvider("https://mainnet.infura.io/v3/8f3b5182a71d43e1bb85fb0b6095ef2a"); 
 
 const Rightbar = ({isMetaMask, isWalletConnect}) => {
-  const {activate , active , connector , deactivate ,library : provider} =
-         useWeb3React() ; //ima property library, a mi ga rename u provider 
+  const {active ,library : provider} = useWeb3React() ; 
   const [user, setUser] = useState() ;
   const [ens,setEns] = useState() ;
 

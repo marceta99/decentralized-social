@@ -4,11 +4,11 @@ import "./TweetInFeed.css" ;
 import { useWeb3React } from "@web3-react/core";
 import {ethers} from "ethers" ; 
 
+const pictureUrl = "https://picsum.photos/200/300?random=" ;
 const mainNetProvider = new ethers.providers.JsonRpcProvider("https://mainnet.infura.io/v3/8f3b5182a71d43e1bb85fb0b6095ef2a"); 
 
 const TweetInFeed = ({post, contract, index, sponsoredPosts ,setSponsoredPosts}) => {
-  const {activate , active , connector , deactivate ,library : provider} =
-  useWeb3React(); //ima property library, a mi ga rename u provider 
+  const {active,library : provider} =useWeb3React(); 
 
   const [isAlredySposnored, setAlredySponsored] = useState(false);
   const [ens,setEns] = useState() ;
@@ -63,7 +63,7 @@ const TweetInFeed = ({post, contract, index, sponsoredPosts ,setSponsoredPosts})
   return (
     <>
      <div className="feedTweet">
-        <img className="profilePic" src="https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTc5OTk2ODUyMTMxNzM0ODcy/gettyimages-1229892983-square.jpg"></img>
+        <img className="profilePic" src={pictureUrl+Math.floor(Math.random() * 10)} ></img>
         <div className="completeTweet">
           <div className="who">
             {ens ? ens : post[1]}
@@ -79,11 +79,13 @@ const TweetInFeed = ({post, contract, index, sponsoredPosts ,setSponsoredPosts})
 
           {active && 
             <div className="interactions">
-              <div className="interactionNums" onClick={sponsorPost}>12k
+              <div className="interactionNums" onClick={sponsorPost}>
+                {Math.floor(Math.random() * 10)}
                 <Icon fill="#000000" size={20} svg="eth"/>
               </div>
               <div className="interactionNums">
-                <Icon fill="#3f3f3f" size={20} svg="triangleUp"/>78
+                <Icon fill="#3f3f3f" size={20} svg="triangleUp"/>
+                {Math.floor(Math.random() * 10)*5}
               </div>
             </div>
           }

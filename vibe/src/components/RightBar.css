@@ -4,7 +4,8 @@
   }
   
   .user {
-    background-color: rgb(209, 206, 206);
+    background-color: rgb(243, 234, 234);
+    box-shadow: 1px 1px 0px whitesmoke, -1px -1px 20px whitesmoke;
     opacity: 0.8;
     border-radius: 25px;
     margin-top: 40px;
@@ -14,7 +15,7 @@
     overflow: hidden;
   }
   .userContainer{
-    background-color: rgb(244, 253, 253);
+    background-color: rgb(255, 255, 255);
     border-radius: 25px;
     padding: 20px;
     color: gray;
