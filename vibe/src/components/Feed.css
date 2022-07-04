@@ -79,7 +79,6 @@
     border: none ; 
 }
 .inputContainer {
-    /* This bit sets up the horizontal layout */
     display:flex;
     flex-direction:row;
     width: 90%;

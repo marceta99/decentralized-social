@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import "./SideBar.css" ;
 import { Link } from "react-router-dom";
-import img1 from "../images/logo.png" ; 
 import Modal from "./Modal";
 import { useWeb3React } from "@web3-react/core";
 
 const Sidebar = ({contract}) => {
   
-  const {activate , active , connector , deactivate ,library : provider} =
-  useWeb3React() ; //ima property library, a mi ga rename u provider  
-
+  const { active} = useWeb3React() ;
   const [openModal, setOpenModal] = useState(false) ; 
 
   return (

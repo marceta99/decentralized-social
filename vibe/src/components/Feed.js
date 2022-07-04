@@ -36,7 +36,7 @@ const Feed = ({contract})=>{
     
     window.onscroll = async ()=>{
       if(!isSearch && window.innerHeight + document.documentElement.scrollTop
-        === document.documentElement.offsetHeight){ //if is scrolled at the end of a page
+        === document.documentElement.offsetHeight){ //if it is scrolled at the end of a page
           console.log("SCROLL")
           if(lastShowedPostId === 1)return ; 
           let arr1 =[] ; 

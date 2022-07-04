@@ -15,8 +15,7 @@ const walletconnect = new WalletConnectConnector({
 }); 
 
 const Welcome = ({setIsWalletConnect, setIsMetaMask, isMetaMask, isWalletConnect})=>{
-    const {activate , active , connector , deactivate ,library : provider} =
-         useWeb3React() ; //ima property library, a mi ga rename u provider 
+    const {activate , active , deactivate} = useWeb3React() ;
 
 
     async function disconnect(){
@@ -39,7 +38,6 @@ const Welcome = ({setIsWalletConnect, setIsMetaMask, isMetaMask, isWalletConnect
     }
     async function connectWalletConnect(){
         try{  
-            //resetWalletConnector(walletconnect); 
             await activate(walletconnect) ; 
             setIsWalletConnect(true) ; 
             console.log(active); 
@@ -51,7 +49,7 @@ const Welcome = ({setIsWalletConnect, setIsMetaMask, isMetaMask, isWalletConnect
     return(
         <>
             <div className="container">
-                <img className="left "src={img1}/>
+                <img className="left "src={img1} alt=""/>
                 <div className="right">
                     <h2>CONNECT YOUR WALLET</h2>
                     <p>Need some help connecting wallet ???
@@ -62,13 +60,13 @@ const Welcome = ({setIsWalletConnect, setIsMetaMask, isMetaMask, isWalletConnect
                     </p>
                     <button disabled={isWalletConnect} className="walletConnection" 
                             onClick={()=>connectMetaMask()}>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/MetaMask_Fox.svg/800px-MetaMask_Fox.svg.png"></img>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/MetaMask_Fox.svg/800px-MetaMask_Fox.svg.png" alt=""></img>
                         MetaMask
                         </button>
                     
                     <button disabled={isMetaMask} className="walletConnection" 
                             onClick={()=>connectWalletConnect()}>
-                        <img src="https://api.nuget.org/v3-flatcontainer/walletconnect.core/1.7.1/icon"></img>
+                        <img src="https://api.nuget.org/v3-flatcontainer/walletconnect.core/1.7.1/icon" alt=""></img>
                         WalletConnect
                         </button>
                     <br/>

@@ -8,7 +8,6 @@ import {ethers} from "ethers" ;
 
 const Home = ({isMetaMask, isWalletConnect})=>{
     const [contract, setContract] = useState(); 
-
     const { active ,library : provider} = useWeb3React() ;  
 
          useEffect(()=>{

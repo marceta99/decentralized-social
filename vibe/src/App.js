@@ -17,21 +17,21 @@ function App() {
 
   return (
     <div>
-    <BrowserRouter>
-    <Web3ReactProvider  getLibrary={getLibrary}>
-    
-      <div className='main-container'>
-      <Routes>
-          <Route path="/" exact element={ <Welcome setIsMetaMask={setIsMetaMask} 
-              setIsWalletConnect ={setIsWalletConnect} isMetaMask={isMetaMask} 
-              isWalletConnect={isWalletConnect} /> }></Route>
-          <Route path="/home" element={ <Home isMetaMask={isMetaMask}
-             isWalletConnect={isWalletConnect}/>}></Route>
-          <Route path="*" element={ <ErrorPage/>}></Route>
-      </Routes>
-      </div>
-    </Web3ReactProvider>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Web3ReactProvider  getLibrary={getLibrary}>
+        
+          <div className='main-container'>
+          <Routes>
+              <Route path="/" exact element={ <Welcome setIsMetaMask={setIsMetaMask} 
+                  setIsWalletConnect ={setIsWalletConnect} isMetaMask={isMetaMask} 
+                  isWalletConnect={isWalletConnect} /> }></Route>
+              <Route path="/home" element={ <Home isMetaMask={isMetaMask}
+                isWalletConnect={isWalletConnect}/>}></Route>
+              <Route path="*" element={ <ErrorPage/>}></Route>
+          </Routes>
+          </div>
+        </Web3ReactProvider>
+      </BrowserRouter>
     </div>
   );
 }

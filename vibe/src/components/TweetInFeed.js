@@ -9,7 +9,6 @@ const mainNetProvider = new ethers.providers.JsonRpcProvider("https://mainnet.in
 
 const TweetInFeed = ({post, contract, index, sponsoredPosts ,setSponsoredPosts}) => {
   const {active,library : provider} =useWeb3React(); 
-
   const [isAlredySposnored, setAlredySponsored] = useState(false);
   const [ens,setEns] = useState() ;
 
@@ -21,14 +20,12 @@ const TweetInFeed = ({post, contract, index, sponsoredPosts ,setSponsoredPosts})
     }
     getEns() ;
   },[]) ;
-  console.log("post from tweetfeed") ; 
   console.log(post); 
 
   const sponsorPost = async ()=>{
     if(active){
       const signer = provider.getSigner() ;
       const signerAddress = signer.provider.provider["selectedAddress"].toLowerCase() ; //proxy objekat
-      //Object.keys(signer.provider.provider) ;
       const postCreator = post[1].toLowerCase() ; 
       let isValid = false ; 
       for(let i = 0 ; i< postCreator.length ;i++){
@@ -63,7 +60,7 @@ const TweetInFeed = ({post, contract, index, sponsoredPosts ,setSponsoredPosts})
   return (
     <>
      <div className="feedTweet">
-        <img className="profilePic" src={pictureUrl+Math.floor(Math.random() * 10)} ></img>
+        <img className="profilePic" src={pictureUrl+Math.floor(Math.random() * 10)} alt=""></img>
         <div className="completeTweet">
           <div className="who">
             {ens ? ens : post[1]}

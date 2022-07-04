@@ -1,15 +1,12 @@
 import "./Feed.css" ;
-import { Icon, TextArea } from "web3uikit";
 import { useWeb3React } from "@web3-react/core";
 import { useEffect, useRef } from "react";
 
 const WritePost = ({contract, setIsLoad })=>{
-  const {activate , active , connector , deactivate ,library : provider} =
-         useWeb3React(); //ima property library, a mi ga rename u provider  
+  const { active} = useWeb3React();
   const input = useRef(); 
 
-    useEffect(()=>{
-      console.log(provider?.getSigner()); 
+    useEffect(()=>{ 
     },[active]);
 
     const createNewPost = async()=>{
@@ -32,7 +29,7 @@ const WritePost = ({contract, setIsLoad })=>{
     return (
         <div className="profileTweet">
           <div className="inputContainer">
-            <img className="profilePic" src="https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTc5OTk2ODUyMTMxNzM0ODcy/gettyimages-1229892983-square.jpg">
+            <img className="profilePic" src="https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTc5OTk2ODUyMTMxNzM0ODcy/gettyimages-1229892983-square.jpg" alt="">
           </img>
             <input type="text" ref={input} onFocus={()=>input.current.value = ""}
             defaultValue="what is your vibe ?" className="postInput"></input>
