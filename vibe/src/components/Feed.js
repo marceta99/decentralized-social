@@ -3,8 +3,10 @@ import TweetInFeed from "./TweetInFeed" ;
 import WritePost from "./WritePost";
 import { useEffect, useState, useRef } from "react";
 import { Icon } from "web3uikit";
+import { useWeb3React } from "@web3-react/core";
 
 const Feed = ({contract})=>{
+  const { active } = useWeb3React() ;  
   const [posts, setPosts] = useState() ; 
   const [lastShowedPostId, setLastShowedId] = useState(1) ; 
   const [isLoad, setIsLoad] = useState(false); 
@@ -16,7 +18,6 @@ const Feed = ({contract})=>{
   let getPostAsync ;  
   
   useEffect(()=>{
-       console.log("RELOADDDDDDDDDDDDDDDDDDDDDDD");
         getPostAsync = async() =>{
         latestPostId = await contract?.getLatestPostID();
         if(latestPostId < 5) fetchedPosts = await contract?.fetchPostsRanged(1,latestPostId );
@@ -92,7 +93,7 @@ const Feed = ({contract})=>{
           </div>
         </div>
        <div className="mainContent">
-        <h3>Update your vibe</h3>
+        {active && <h3>Update your vibe</h3>}
         <WritePost contract={contract} setIsLoad={setIsLoad}/>
         <h3>Feed</h3>
         {posts && posts.map((post,i)=>(

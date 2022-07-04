@@ -69,3 +69,39 @@
     width: 98%;
     border-radius: 10px;
 }
+@media (max-width: 700px){
+    .feedTweet{
+        width: 500px;
+    }
+    .moreVert{
+        display: none;
+    }
+  }
+  @media (max-width: 600px){
+    .feedTweet{
+        width: 400px;
+    }
+    .accWhen{
+        display: none;
+    }
+  }
+  @media (max-width: 600px){
+    .feedTweet{
+        width: 300px;
+    }
+    .who{
+        font-size: 12px;
+    }
+  }
+  @media (max-width: 400px){
+    .feedTweet{
+        width: 270px;
+        height: 50px;
+    }
+    .who{
+        font-size: 9px;
+    }
+    .interactionNums{
+        display: none;
+    }
+  }

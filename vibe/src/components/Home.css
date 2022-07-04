@@ -27,3 +27,11 @@
     width: 800px;
   }
   
+  @media (max-width: 1200px){
+    .rightBar{
+      display: none;
+    }
+    .sideBar{
+      display: none;
+    }
+  }
