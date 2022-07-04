@@ -1,3 +1,10 @@
+.main-container-div{
+    padding: 20px;
+    box-shadow: 1px 1px 0px whitesmoke, -1px -1px 20px whitesmoke;
+
+    border-radius: 20px;
+
+}
 .pageIdentify{
     max-width: 100%;
     padding:20px;
@@ -55,7 +62,7 @@
 .profileTweet {
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid rgb(63, 63, 63) ;
+    border-radius: 20px;
     padding: 20px;
     flex-direction: column;
 }
@@ -92,4 +99,14 @@
   input:focus {
     outline: none;
   }
-  
+  .btn{
+    width: 10%;
+    background-color: blue;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    font-weight: bold;
+  }
+  .btn:hover{
+    background-color: indigo;
+  }

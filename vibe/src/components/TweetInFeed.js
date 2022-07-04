@@ -79,11 +79,11 @@ const TweetInFeed = ({post, contract, index, sponsoredPosts ,setSponsoredPosts})
 
           {active && 
             <div className="interactions">
-              <div className="interactionNums" onClick={sponsorPost}>
-                <Icon fill="#000000" size={20} svg="eth"/>12
+              <div className="interactionNums" onClick={sponsorPost}>12k
+                <Icon fill="#000000" size={20} svg="eth"/>
               </div>
               <div className="interactionNums">
-                <Icon fill="#3f3f3f" size={20} svg="matic"/>
+                <Icon fill="#3f3f3f" size={20} svg="triangleUp"/>78
               </div>
             </div>
           }

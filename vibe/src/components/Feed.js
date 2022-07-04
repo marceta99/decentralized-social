@@ -3,7 +3,6 @@ import TweetInFeed from "./TweetInFeed" ;
 import WritePost from "./WritePost";
 import { useEffect, useState, useRef } from "react";
 import { Icon } from "web3uikit";
-import SearchUserPosts from "./SearchUserPosts";
 
 const Feed = ({contract})=>{
   const [posts, setPosts] = useState() ; 
@@ -81,24 +80,28 @@ const Feed = ({contract})=>{
     return postsFromCreator ; 
   }
     return (
-      <>
+      <div className="main-container-div">
        <div className="profileTweet">
           <div className="inputContainer">
-            <input type="text" ref={input} defaultValue="search..." className="postInput"></input>
+            <input type="text" ref={input} defaultValue="search..." 
+            onFocus={()=>input.current.value = ""}
+            className="postInput"></input>
             <div className="interactionNums" onClick={searchPosts}>
                 <Icon fill="#ffffff" size={20} svg="search"/>
               </div>
           </div>
         </div>
        <div className="mainContent">
+        <h3>Update your vibe</h3>
         <WritePost contract={contract} setIsLoad={setIsLoad}/>
+        <h3>Feed</h3>
         {posts && posts.map((post,i)=>(
           <TweetInFeed key={post} post={post} index={i+1} contract={contract} 
             sponsoredPosts={sponsoredPosts} setSponsoredPosts={setSponsoredPosts}/>
         ))}
         
        </div>
-      </>
+      </div>
     );
   };
 

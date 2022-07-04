@@ -1,6 +1,8 @@
 .feedTweet {
     max-width: 100%;
-    border-bottom: 1px solid rgb(63, 63, 63);
+    border: 1px solid white;
+    border-radius: 20px;
+    margin-bottom: 5px;
     padding: 20px;
     color: white;
     justify-content: space-between;
@@ -38,7 +40,7 @@
 
 .interactionNums:hover {
     cursor:pointer;
-    background-color: #1da0f20b;
+    background-color: white;
 }
 
 .who {

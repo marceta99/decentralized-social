@@ -7,12 +7,16 @@
     align-items: stretch;
     justify-content: space-between;
     border-radius: 20px;
-    background-color: darkgray;
+    opacity: 0.9;
 }
 
 .logo{
     width: 50px;
     height: 50px;
+    color: blue;
+}
+.logo:hover{
+    color: blueviolet;
 }
 
 .buttonPost{
@@ -35,4 +39,3 @@
 
     white-space: nowrap;
 }
-

@@ -1,3 +1,4 @@
+
 .container{
     width: 100%;
     height: 100%;
@@ -39,4 +40,32 @@
     width: 32%;
     height: 11%;
     background-image: linear-gradient(to right top, #c6c6f4, #c0baf2, #bbadee, #b99fea, #b891e4, #a897eb, #969cf1, #82a1f4, #65b6f3, #69c5e9, #87d1dc, #abdad4);
+}
+#logo{
+    color: black;
+    text-decoration: none;
+
+	box-shadow: 0 0 0 0 rgb(0, 0, 0);
+	transform: scale(1);
+	animation: pulse 2s infinite;
+}
+#logo:hover{
+    color: gray;
+}
+@keyframes pulse {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(76, 16, 187, 0.7);
+        color: #969cf1;
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+	}
 }

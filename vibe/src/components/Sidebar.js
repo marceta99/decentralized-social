@@ -14,18 +14,18 @@ const Sidebar = ({contract}) => {
 
   return (
     <>
-     {openModal && <Modal onClose={()=>setOpenModal(false)} contract={contract}/>} 
-      <div className="siderContent">
-        <Link to="/" className="link">
-          <h1 className="logo">VIBE</h1>
-        </Link>
-        {active && 
-          <div className="buttonPost" onClick={()=> setOpenModal(true)}>
-            <h4 className="writePost">Write A Post </h4>
-         </div>
-        }
-      </div>
-    </>
+    {openModal && <Modal onClose={()=>setOpenModal(false)} contract={contract}/>} 
+     <div className="siderContent">
+       <Link to="/" className="link" style={{ textDecoration: 'none' }}>
+         <h1 className="logo">VIBE</h1>
+       </Link>
+       {active && 
+         <div className="buttonPost" onClick={()=> setOpenModal(true)}>
+           <h4 className="writePost">Write A Post </h4>
+        </div>
+       }
+     </div>
+   </>
   );
 };
 
