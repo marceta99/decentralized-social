@@ -9,7 +9,7 @@ choose a directory and run command
 
 change directory to /decetralized-social/vibe  : 
 ```bash
-    cd decetralized-socail/vibe
+    cd decetralized-social/vibe
 ```
 install all dependencies : 
 ```bash
