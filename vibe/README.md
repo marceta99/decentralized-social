@@ -7,13 +7,11 @@ choose a directory and run command
     git clone https://github.com/marceta99/decentralized-social
 ```
 
-change directory to /decetralized-social/vibe : 
+change directory to /decentralized-social/vibe : 
 ```bash
-    cd decetralized-social
+    cd decentralized-social/vibe
 ```
-```bash
-    cd vibe
-```
+
 install all dependencies : 
 ```bash
     npm install
