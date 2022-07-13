@@ -7,9 +7,12 @@ choose a directory and run command
     git clone https://github.com/marceta99/decentralized-social
 ```
 
-change directory to /decetralized-social/vibe  : 
+change directory to /decetralized-social/vibe : 
 ```bash
-    cd decetralized-social/vibe
+    cd decetralized-social
+```
+```bash
+    cd vibe
 ```
 install all dependencies : 
 ```bash
