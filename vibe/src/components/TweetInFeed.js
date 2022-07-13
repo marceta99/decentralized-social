@@ -4,12 +4,12 @@ import "./TweetInFeed.css" ;
 import { ranPic } from "../static/pics";
 import { useWeb3React } from "@web3-react/core";
 import {ethers} from "ethers" ; 
-
+import Sponsor from "./Sponsor.js" ; 
 
 const TweetInFeed = ({post, contract, index, sponsoredPosts ,setSponsoredPosts}) => {
   const {active,library : provider} =useWeb3React(); 
-  const [isAlredySposnored, setAlredySponsored] = useState(false);
   const [ens,setEns] = useState() ;
+  const [openSponsor , setOpenSponsor] = useState(false) ; 
 
   useEffect(()=>{
     const getEns = async ()=>{
@@ -18,47 +18,13 @@ const TweetInFeed = ({post, contract, index, sponsoredPosts ,setSponsoredPosts})
       console.log(resolvedName); 
       setEns(resolvedName); 
     }
-    getEns() ;
+    if(active)getEns();
   },[]) ;
 
-  const sponsorPost = async ()=>{
-    if(active){
-      const signer = provider.getSigner() ;
-      const signerAddress = signer.provider.provider["selectedAddress"].toLowerCase() ; 
-      const postCreator = post[1].toLowerCase() ; 
-      let isValid = false ; 
-      for(let i = 0 ; i< postCreator.length ;i++){
-        let char1 = postCreator.charCodeAt(i);   
-        let char2 = signerAddress.charCodeAt(i); 
-        if(char1 != char2){
-            isValid = true ; 
-            break; 
-        }
-      }
-      if(!isValid){
-        alert("can't sposnor your own posts") ; 
-      }else{
-        sponsoredPosts.forEach(p => {
-            if(p === index){
-              setAlredySponsored(true) ; 
-              alert("You alredy sposnored this post");
-            }     
-        });
-        if(!isAlredySposnored){
-          try {
-
-            const options = {value: ethers.utils.parseEther("0.01")}
-            await contract.sponsorPost(index, options);  
-            setSponsoredPosts(previous => [...previous, index]); 
-          } catch (error) {
-            alert("insufficient funds"); 
-          }
-        }
-      }
-    }
-  }
   return (
     <>
+     {openSponsor && <Sponsor onClose={()=>setOpenSponsor(false)} contract={contract} post={post}
+                index={index} sponsoredPosts={sponsoredPosts} setSponsoredPosts={setSponsoredPosts}/>} 
      <div className="feedTweet">
         <img className="profilePic" src={ranPic+Math.floor(Math.random() * 10)} alt=""></img>
         <div className="completeTweet">
@@ -75,8 +41,7 @@ const TweetInFeed = ({post, contract, index, sponsoredPosts ,setSponsoredPosts})
 
           {active && 
             <div className="interactions">
-              <div className="interactionNums">
-                {Math.floor(Math.random() * 10)}
+              <div className="interactionNums" onClick={()=>setOpenSponsor(true)}>
                 <Icon fill="#000000" size={20} svg="eth"/>
               </div>
               <div className="interactionNums">
