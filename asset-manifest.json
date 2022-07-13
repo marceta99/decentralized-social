@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/decentralized-social/static/css/main.e5ca7035.css",
+    "main.js": "/decentralized-social/static/js/main.b858223a.js",
+    "static/js/698.9fc042e5.chunk.js": "/decentralized-social/static/js/698.9fc042e5.chunk.js",
+    "static/js/965.f7d04d55.chunk.js": "/decentralized-social/static/js/965.f7d04d55.chunk.js",
+    "static/js/243.7bfaeffa.chunk.js": "/decentralized-social/static/js/243.7bfaeffa.chunk.js",
+    "static/js/510.36c309f7.chunk.js": "/decentralized-social/static/js/510.36c309f7.chunk.js",
+    "static/js/22.47f9b49c.chunk.js": "/decentralized-social/static/js/22.47f9b49c.chunk.js",
+    "static/js/993.5f5ab3ac.chunk.js": "/decentralized-social/static/js/993.5f5ab3ac.chunk.js",
+    "static/js/651.fba691c2.chunk.js": "/decentralized-social/static/js/651.fba691c2.chunk.js",
+    "static/js/27.38ed1ef5.chunk.js": "/decentralized-social/static/js/27.38ed1ef5.chunk.js",
+    "static/js/855.327d8aa9.chunk.js": "/decentralized-social/static/js/855.327d8aa9.chunk.js",
+    "static/js/365.ccf19fee.chunk.js": "/decentralized-social/static/js/365.ccf19fee.chunk.js",
+    "static/js/508.72c8f2b5.chunk.js": "/decentralized-social/static/js/508.72c8f2b5.chunk.js",
+    "static/js/225.1fb8e715.chunk.js": "/decentralized-social/static/js/225.1fb8e715.chunk.js",
+    "static/js/741.4f3bb2fc.chunk.js": "/decentralized-social/static/js/741.4f3bb2fc.chunk.js",
+    "static/js/889.2bb008b7.chunk.js": "/decentralized-social/static/js/889.2bb008b7.chunk.js",
+    "static/js/550.2a2a0f44.chunk.js": "/decentralized-social/static/js/550.2a2a0f44.chunk.js",
+    "static/js/562.ca425f50.chunk.js": "/decentralized-social/static/js/562.ca425f50.chunk.js",
+    "static/js/461.2b92d8e0.chunk.js": "/decentralized-social/static/js/461.2b92d8e0.chunk.js",
+    "static/js/798.796036fd.chunk.js": "/decentralized-social/static/js/798.796036fd.chunk.js",
+    "static/media/vibeProfile.png": "/decentralized-social/static/media/vibeProfile.d6150e5a9ae263a98e1e.png",
+    "index.html": "/decentralized-social/index.html"
+  },
+  "entrypoints": [
+    "static/css/main.e5ca7035.css",
+    "static/js/main.b858223a.js"
+  ]
+}
