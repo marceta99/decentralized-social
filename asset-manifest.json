@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/decentralized-social/static/css/main.e5ca7035.css",
-    "main.js": "/decentralized-social/static/js/main.b858223a.js",
+    "main.js": "/decentralized-social/static/js/main.eb33f469.js",
     "static/js/698.9fc042e5.chunk.js": "/decentralized-social/static/js/698.9fc042e5.chunk.js",
     "static/js/965.f7d04d55.chunk.js": "/decentralized-social/static/js/965.f7d04d55.chunk.js",
     "static/js/243.7bfaeffa.chunk.js": "/decentralized-social/static/js/243.7bfaeffa.chunk.js",
@@ -25,6 +25,6 @@
   },
   "entrypoints": [
     "static/css/main.e5ca7035.css",
-    "static/js/main.b858223a.js"
+    "static/js/main.eb33f469.js"
   ]
 }
