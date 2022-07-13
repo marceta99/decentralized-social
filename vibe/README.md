@@ -7,7 +7,7 @@ choose a directory and run command
     git clone https://github.com/marceta99/decentralized-social
 ```
 
-change directory to /decetralized-social/vibe : 
+change directory to /decetralized-social/vibe  : 
 ```bash
     cd decetralized-socail/vibe
 ```
@@ -15,7 +15,7 @@ install all dependencies :
 ```bash
     npm install
 ```
-you are good to go and now you can start your localhost : 
+you are good to go and now you can start your localhost  : 
 ```bash
     npm start 
 ```
