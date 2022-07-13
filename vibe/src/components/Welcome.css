@@ -42,9 +42,8 @@
     background-image: linear-gradient(to right top, #c6c6f4, #c0baf2, #bbadee, #b99fea, #b891e4, #a897eb, #969cf1, #82a1f4, #65b6f3, #69c5e9, #87d1dc, #abdad4);
 }
 #logo{
-    color: black;
+    color: white;
     text-decoration: none;
-
 	box-shadow: 0 0 0 0 rgb(0, 0, 0);
 	transform: scale(1);
 	animation: pulse 2s infinite;

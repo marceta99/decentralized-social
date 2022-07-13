@@ -4,8 +4,6 @@ import { useWeb3React } from "@web3-react/core";
 import { useEffect, useState } from "react";
 import {ethers} from "ethers" ; 
 
-const mainNetProvider = new ethers.providers.JsonRpcProvider("https://mainnet.infura.io/v3/8f3b5182a71d43e1bb85fb0b6095ef2a"); 
-
 const Rightbar = ({isMetaMask, isWalletConnect}) => {
   const {active ,library : provider} = useWeb3React() ; 
   const [user, setUser] = useState() ;
@@ -24,8 +22,8 @@ const Rightbar = ({isMetaMask, isWalletConnect}) => {
         setUser(userAddress);
       }
       const getEns = async ()=>{
-        const resolvedName = await mainNetProvider?.lookupAddress(userAddress); 
-        console.log(resolvedName); 
+        const ethersProvider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_INFURA_API); 
+        const resolvedName = await ethersProvider?.lookupAddress(userAddress); 
         setEns(resolvedName); 
       }
       getEns();
@@ -41,7 +39,6 @@ const Rightbar = ({isMetaMask, isWalletConnect}) => {
         <div className="userContainer">
           {ens ? ens : user?.slice(0,15)}...
         </div>
-        
       </div>
      </div> }
      

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Icon } from "web3uikit";
 import "./TweetInFeed.css" ; 
+import { ranPic } from "../static/pics";
 import { useWeb3React } from "@web3-react/core";
 import {ethers} from "ethers" ; 
 
-const pictureUrl = "https://picsum.photos/200/300?random=" ;
-const mainNetProvider = new ethers.providers.JsonRpcProvider("https://mainnet.infura.io/v3/8f3b5182a71d43e1bb85fb0b6095ef2a"); 
 
 const TweetInFeed = ({post, contract, index, sponsoredPosts ,setSponsoredPosts}) => {
   const {active,library : provider} =useWeb3React(); 
@@ -14,18 +13,18 @@ const TweetInFeed = ({post, contract, index, sponsoredPosts ,setSponsoredPosts})
 
   useEffect(()=>{
     const getEns = async ()=>{
-      const resolvedName = await mainNetProvider?.lookupAddress(post[1]) ; 
+      const ethersProvider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_INFURA_API); 
+      const resolvedName = await ethersProvider?.lookupAddress(post[1]) ; 
       console.log(resolvedName); 
       setEns(resolvedName); 
     }
     getEns() ;
   },[]) ;
-  console.log(post); 
 
   const sponsorPost = async ()=>{
     if(active){
       const signer = provider.getSigner() ;
-      const signerAddress = signer.provider.provider["selectedAddress"].toLowerCase() ; //proxy objekat
+      const signerAddress = signer.provider.provider["selectedAddress"].toLowerCase() ; 
       const postCreator = post[1].toLowerCase() ; 
       let isValid = false ; 
       for(let i = 0 ; i< postCreator.length ;i++){
@@ -47,6 +46,7 @@ const TweetInFeed = ({post, contract, index, sponsoredPosts ,setSponsoredPosts})
         });
         if(!isAlredySposnored){
           try {
+
             const options = {value: ethers.utils.parseEther("0.01")}
             await contract.sponsorPost(index, options);  
             setSponsoredPosts(previous => [...previous, index]); 
@@ -60,7 +60,7 @@ const TweetInFeed = ({post, contract, index, sponsoredPosts ,setSponsoredPosts})
   return (
     <>
      <div className="feedTweet">
-        <img className="profilePic" src={pictureUrl+Math.floor(Math.random() * 10)} alt=""></img>
+        <img className="profilePic" src={ranPic+Math.floor(Math.random() * 10)} alt=""></img>
         <div className="completeTweet">
           <div className="who">
             {ens ? ens : post[1]}
@@ -71,12 +71,11 @@ const TweetInFeed = ({post, contract, index, sponsoredPosts ,setSponsoredPosts})
           </div>
           <div className="tweetContent">
             {post[2]}
-           
           </div>
 
           {active && 
             <div className="interactions">
-              <div className="interactionNums" onClick={sponsorPost}>
+              <div className="interactionNums">
                 {Math.floor(Math.random() * 10)}
                 <Icon fill="#000000" size={20} svg="eth"/>
               </div>

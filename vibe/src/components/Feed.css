@@ -1,9 +1,7 @@
 .main-container-div{
     padding: 20px;
     box-shadow: 1px 1px 0px whitesmoke, -1px -1px 20px whitesmoke;
-
     border-radius: 20px;
-
 }
 .pageIdentify{
     max-width: 100%;

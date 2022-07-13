@@ -12,13 +12,15 @@ const Feed = ({contract})=>{
   const [isLoad, setIsLoad] = useState(false); 
   const [isSearch, setIsSearch] = useState(false) ; 
   const [sponsoredPosts, setSponsoredPosts] = useState([]);
+  
   const input = useRef();
   let fetchedPosts = [] ;
   let latestPostId = 1 ;
-  let getPostAsync ;  
+  
   
   useEffect(()=>{
-        getPostAsync = async() =>{
+  
+        const getPostAsync = async() =>{
         latestPostId = await contract?.getLatestPostID();
         if(latestPostId < 5) fetchedPosts = await contract?.fetchPostsRanged(1,latestPostId );
         else{
@@ -81,6 +83,7 @@ const Feed = ({contract})=>{
     return postsFromCreator ; 
   }
     return (
+      <>
       <div className="main-container-div">
        <div className="profileTweet">
           <div className="inputContainer">
@@ -103,6 +106,7 @@ const Feed = ({contract})=>{
         
        </div>
       </div>
+      </>
     );
   };
 

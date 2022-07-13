@@ -1,6 +1,7 @@
 import "./Feed.css" ;
 import { useWeb3React } from "@web3-react/core";
 import { useEffect, useRef } from "react";
+import { profilePic } from "../static/pics";
 
 const WritePost = ({contract, setIsLoad })=>{
   const { active} = useWeb3React();
@@ -29,7 +30,7 @@ const WritePost = ({contract, setIsLoad })=>{
     return (
         <div className="profileTweet">
           <div className="inputContainer">
-            <img className="profilePic" src="https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTc5OTk2ODUyMTMxNzM0ODcy/gettyimages-1229892983-square.jpg" alt="">
+            <img className="profilePic" src={profilePic} alt="">
           </img>
             <input type="text" ref={input} onFocus={()=>input.current.value = ""}
             defaultValue="what is your vibe ?" className="postInput"></input>
